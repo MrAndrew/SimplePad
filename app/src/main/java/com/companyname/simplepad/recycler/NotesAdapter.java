@@ -1,4 +1,4 @@
-package com.udacity.notepad.recycler;
+package com.companyname.simplepad.recycler;
 
 import android.content.Context;
 import android.os.Handler;
@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.udacity.notepad.R;
-import com.udacity.notepad.data.DataStore;
-import com.udacity.notepad.data.Note;
+import com.companyname.simplepad.R;
+import com.companyname.simplepad.data.DataStore;
+import com.companyname.simplepad.data.Note;
 
 import java.util.ArrayList;
 import java.util.List;

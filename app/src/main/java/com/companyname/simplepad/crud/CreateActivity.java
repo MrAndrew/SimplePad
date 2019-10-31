@@ -1,4 +1,4 @@
-package com.udacity.notepad.crud;
+package com.companyname.simplepad.crud;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.udacity.notepad.R;
-import com.udacity.notepad.data.DataStore;
-import com.udacity.notepad.data.Note;
+import com.companyname.simplepad.R;
+import com.companyname.simplepad.data.DataStore;
+import com.companyname.simplepad.data.Note;
 
 import java.util.Date;
 

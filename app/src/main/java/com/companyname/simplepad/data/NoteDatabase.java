@@ -1,4 +1,4 @@
-package com.udacity.notepad.data;
+package com.companyname.simplepad.data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,11 +10,11 @@ import java.util.Date;
 import java.util.List;
 
 import static android.provider.BaseColumns._ID;
-import static com.udacity.notepad.data.NotesContract.NoteTable.CREATED_AT;
-import static com.udacity.notepad.data.NotesContract.NoteTable.IS_PINNED;
-import static com.udacity.notepad.data.NotesContract.NoteTable.TEXT;
-import static com.udacity.notepad.data.NotesContract.NoteTable.UPDATED_AT;
-import static com.udacity.notepad.data.NotesContract.NoteTable._TABLE_NAME;
+import static com.companyname.simplepad.data.NotesContract.NoteTable.CREATED_AT;
+import static com.companyname.simplepad.data.NotesContract.NoteTable.IS_PINNED;
+import static com.companyname.simplepad.data.NotesContract.NoteTable.TEXT;
+import static com.companyname.simplepad.data.NotesContract.NoteTable.UPDATED_AT;
+import static com.companyname.simplepad.data.NotesContract.NoteTable._TABLE_NAME;
 
 public class NoteDatabase {
 

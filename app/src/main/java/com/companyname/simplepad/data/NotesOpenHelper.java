@@ -1,11 +1,11 @@
-package com.udacity.notepad.data;
+package com.companyname.simplepad.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static com.udacity.notepad.data.NotesContract.SQL_CREATE_ENTRIES;
-import static com.udacity.notepad.data.NotesContract.SQL_DELETE_ENTRIES;
+import static com.companyname.simplepad.data.NotesContract.SQL_CREATE_ENTRIES;
+import static com.companyname.simplepad.data.NotesContract.SQL_DELETE_ENTRIES;
 
 public class NotesOpenHelper extends SQLiteOpenHelper {
 

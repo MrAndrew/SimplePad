@@ -1,9 +1,9 @@
-package com.udacity.notepad.data;
+package com.companyname.simplepad.data;
 
 import android.provider.BaseColumns;
 
-import static com.udacity.notepad.data.NotesContract.NoteTable.CREATED_AT;
-import static com.udacity.notepad.data.NotesContract.NoteTable._TABLE_NAME;
+import static com.companyname.simplepad.data.NotesContract.NoteTable.CREATED_AT;
+import static com.companyname.simplepad.data.NotesContract.NoteTable._TABLE_NAME;
 
 public final class NotesContract {
     private NotesContract() {}

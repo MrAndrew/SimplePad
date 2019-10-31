@@ -1,4 +1,4 @@
-package com.udacity.notepad.util;
+package com.companyname.simplepad.util;
 
 import android.content.Context;
 import android.graphics.Rect;

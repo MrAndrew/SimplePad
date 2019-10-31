@@ -1,4 +1,4 @@
-package com.udacity.notepad.data;
+package com.companyname.simplepad.data;
 
 import android.content.Context;
 

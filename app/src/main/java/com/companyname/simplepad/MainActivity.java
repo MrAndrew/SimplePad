@@ -1,4 +1,4 @@
-package com.udacity.notepad;
+package com.companyname.simplepad;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,9 +10,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.udacity.notepad.crud.CreateActivity;
-import com.udacity.notepad.recycler.NotesAdapter;
-import com.udacity.notepad.util.SpaceItemDecoration;
+import com.companyname.simplepad.crud.CreateActivity;
+import com.companyname.simplepad.recycler.NotesAdapter;
+import com.companyname.simplepad.util.SpaceItemDecoration;
+import com.companyname.simplepad.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,8 +1,8 @@
-package com.udacity.notepad;
+package com.companyname.simplepad;
 
 import android.app.Application;
 
-import com.udacity.notepad.data.DataStore;
+import com.companyname.simplepad.data.DataStore;
 
 public class NotesApplication extends Application {
 
