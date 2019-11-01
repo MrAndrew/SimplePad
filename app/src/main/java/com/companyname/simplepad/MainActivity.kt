@@ -14,26 +14,23 @@ import com.companyname.simplepad.crud.CreateActivity
 import com.companyname.simplepad.recycler.NotesAdapter
 import com.companyname.simplepad.util.SpaceItemDecoration
 import com.companyname.simplepad.R
+//Allows kotlin to auto find view ids to make declarations and assignments easier. (var name is view id)
+//This might get in the way of instant run feature, if crashes when doing so try a clean build
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    private var recycler: RecyclerView? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-
-        val fab = findViewById<FloatingActionButton>(R.id.fab)
         //b/c of Kotlin's SAM conversion any simple interface with one method can be changed to a simple lambda expression
         fab.setOnClickListener { startActivity(CreateActivity.get(this@MainActivity)) }
 
-        recycler = findViewById(R.id.recycler)
-        recycler!!.layoutManager = LinearLayoutManager(this)
-        recycler!!.addItemDecoration(SpaceItemDecoration(this, R.dimen.margin_small))
-        recycler!!.adapter = NotesAdapter(this)
+        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.addItemDecoration(SpaceItemDecoration(this, R.dimen.margin_small))
+        recycler.adapter = NotesAdapter(this)
     }
 
     override fun onResume() {
