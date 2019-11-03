@@ -14,56 +14,50 @@ import com.companyname.simplepad.data.NotesContract.NoteTable.IS_PINNED
 import com.companyname.simplepad.data.NotesContract.NoteTable.TEXT
 import com.companyname.simplepad.data.NotesContract.NoteTable.UPDATED_AT
 import com.companyname.simplepad.data.NotesContract.NoteTable._TABLE_NAME
+import org.jetbrains.anko.db.transaction
 
 class NoteDatabase(context: Context) {
 
     private val helper: NotesOpenHelper = NotesOpenHelper(context)
 
-    val all: List<Note>
-        get() {
-            val cursor = helper.readableDatabase.query(_TABLE_NAME, null, null, null, null, null,
+    //change back into function despite kotlin's change to variable to keep readability and consistency
+    fun getAll(): List<Note> {
+            val cursor = helper.readableDatabase.query(_TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
                     CREATED_AT)
-            val retval = allFromCursor(cursor)
-            cursor.close()
-            return retval
+        //lambda based function .use streamlines the use of closable resources and helps prevent memory leaks
+        return cursor.use(this::allFromCursor) //.use auto closes cursor
         }
 
     fun loadAllByIds(vararg ids: Int): List<Note> {
-        val questionMarks = StringBuilder()
-        var i = 0
-        while (i++ < ids.size) {
-            questionMarks.append("?")
-            if (i <= ids.size - 1) {
-                questionMarks.append(", ")
-            }
-        }
-        val args = arrayOfNulls<String>(ids.size)
-        i = 0
-        while (i < ids.size) {
-            args[i] = Integer.toString(ids[i])
-            ++i
-        }
+        //kotlin's functional language extensions help simplify string builders here
+        val questionMarks = ids.map { "?" }.joinToString { ", " }
+        var args = ids.map { it.toString() }
         val selection = "$_ID IN ($questionMarks)"
-        val cursor = helper.readableDatabase.query(_TABLE_NAME, null,
+        val cursor = helper.readableDatabase.query(_TABLE_NAME,
+            null,
                 selection,
-                args, null, null,
+                args.toTypedArray(),
+            null,
+            null,
                 CREATED_AT)
-        val retval = allFromCursor(cursor)
-        cursor.close()
-        return retval
+        //lambda based function .use streamlines the use of closable resources and helps prevent memory leaks
+        return cursor.use(this::allFromCursor) //.use auto closes cursor
     }
 
     fun insert(vararg notes: Note) {
         val values = fromNotes(notes)
         val db = helper.writableDatabase
-        db.beginTransaction()
-        try {
+        //From Anko that wraps simple lambda and wraps all of its operations inside a database transaction
+        //thus handles the try/catch for us and allows cleaner looking code
+        db.transaction {
             for (value in values) {
-                db.insert(_TABLE_NAME, null, value)
+                insert(_TABLE_NAME, null, value)
             }
-            db.setTransactionSuccessful()
-        } finally {
-            db.endTransaction()
         }
     }
 
@@ -83,13 +77,13 @@ class NoteDatabase(context: Context) {
 
     private fun fromCursor(cursor: Cursor): Note {
         var col = 0
-        val note = Note()
-        note.id = cursor.getInt(col++)
-        note.text = cursor.getString(col++)
-        note.isPinned = cursor.getInt(col++) != 0
-        note.createdAt = Date(cursor.getLong(col++))
-        note.updatedAt = Date(cursor.getLong(col))
-        return note
+        return Note().apply {
+            id = cursor.getInt(col++)
+            text = cursor.getString(col++)
+            isPinned = cursor.getInt(col++) != 0
+            createdAt = Date(cursor.getLong(col++))
+            updatedAt = Date(cursor.getLong(col))
+        }
     }
 
     private fun allFromCursor(cursor: Cursor): List<Note> {
@@ -101,16 +95,16 @@ class NoteDatabase(context: Context) {
     }
 
     private fun fromNote(note: Note): ContentValues {
-        val values = ContentValues()
-        val id = note.id
-        if (id != -1) {
-            values.put(_ID, id)
+        return ContentValues().apply {
+            val noteId = note.id
+            if (noteId != -1) {
+                put(_ID, noteId)
+            }
+            put(TEXT, note.text)
+            put(IS_PINNED, note.isPinned)
+            put(CREATED_AT, note.createdAt.time)
+            put(UPDATED_AT, note.updatedAt!!.time)
         }
-        values.put(TEXT, note.text)
-        values.put(IS_PINNED, note.isPinned)
-        values.put(CREATED_AT, note.createdAt.time)
-        values.put(UPDATED_AT, note.updatedAt!!.time)
-        return values
     }
 
     //NOTE: sometimes to deal with incorrect TypeVariance adding `out` helps
