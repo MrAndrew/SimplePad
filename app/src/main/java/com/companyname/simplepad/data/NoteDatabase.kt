@@ -77,6 +77,7 @@ class NoteDatabase(context: Context) {
 
     private fun fromCursor(cursor: Cursor): Note {
         var col = 0
+        //.apply here let's us inline create and return our object from cursor db object
         return Note().apply {
             id = cursor.getInt(col++)
             text = cursor.getString(col++)
@@ -95,6 +96,7 @@ class NoteDatabase(context: Context) {
     }
 
     private fun fromNote(note: Note): ContentValues {
+        //.apply here let's us inline return our content values from object passed in
         return ContentValues().apply {
             val noteId = note.id
             if (noteId != -1) {
