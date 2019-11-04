@@ -1,19 +1,13 @@
 package com.companyname.simplepad
 
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.companyname.simplepad.crud.CreateActivity
 import com.companyname.simplepad.recycler.NotesAdapter
 import com.companyname.simplepad.util.SpaceItemDecoration
-import com.companyname.simplepad.R
 //Allows kotlin to auto find view ids to make declarations and assignments easier. (var name is view id)
 //This might get in the way of instant run feature, if crashes when doing so try a clean build
 import kotlinx.android.synthetic.main.activity_main.*
