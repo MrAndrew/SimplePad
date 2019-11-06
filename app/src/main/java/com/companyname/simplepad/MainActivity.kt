@@ -57,4 +57,5 @@ class MainActivity : AppCompatActivity() {
     private fun refresh() {
         (recycler!!.adapter as NotesAdapter).refresh()
     }
+
 }

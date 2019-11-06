@@ -1,6 +1,5 @@
 package com.companyname.simplepad.data
 
-import android.os.FileObserver.CREATE
 import com.companyname.simplepad.data.NotesContract.NoteTable.CREATED_AT
 import com.companyname.simplepad.data.NotesContract.NoteTable.IS_PINNED
 import com.companyname.simplepad.data.NotesContract.NoteTable.TEXT

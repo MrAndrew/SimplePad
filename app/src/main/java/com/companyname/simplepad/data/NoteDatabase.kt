@@ -3,11 +3,8 @@ package com.companyname.simplepad.data
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
-
 import java.util.ArrayList
 import java.util.Date
-
 import android.provider.BaseColumns._ID
 import com.companyname.simplepad.data.NotesContract.NoteTable.CREATED_AT
 import com.companyname.simplepad.data.NotesContract.NoteTable.IS_PINNED
@@ -66,7 +63,7 @@ class NoteDatabase(context: Context) {
         helper.writableDatabase.update(_TABLE_NAME,
                 values,
                 "$_ID = ?",
-                arrayOf(Integer.toString(note.id)))
+                arrayOf(note.id.toString()))
     }
 
     fun delete(note: Note) {
