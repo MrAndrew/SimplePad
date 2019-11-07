@@ -15,6 +15,7 @@
         android:layout_height="match_parent"
         android:padding="@dimen/margin_small"
         android:clickable="true"
+        android:focusable="true"
         android:background="?selectableItemBackground"
         android:orientation="vertical"
         android:minHeight="@dimen/card_min_height">

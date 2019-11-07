@@ -53,9 +53,19 @@ class CreateActivity : AppCompatActivity() {
                 save()
                 finish()
             }
+            R.id.action_delete -> {
+                delete()
+                finish()
+            }
             else -> return super.onOptionsItemSelected(item)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun delete() {
+        DataStore.execute(Runnable {
+            if(!isNewNote) note?.let { DataStore.notes.delete(it) }
+        })
     }
 
     private fun save() {
